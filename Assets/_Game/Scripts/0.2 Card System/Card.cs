@@ -1,7 +1,16 @@
+using DrewDev.GridSystem;
 using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    public Vector2 GridPosition
+    {
+        get
+        {
+            return GridComponent.Instance.Grid.WorldToGridPosition(transform.position);
+        }
+    }
+
     private CardStateMachine stateMachine;
 
     public void Start()

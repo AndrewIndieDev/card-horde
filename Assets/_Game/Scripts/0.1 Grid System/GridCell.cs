@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GridSystem
+namespace DrewDev.GridSystem
 {
     public class GridCell
     {
@@ -13,8 +13,6 @@ namespace GridSystem
         public bool IsGridEdge { get { return GridPosition.x == 0 || GridPosition.x == associatedGrid.GridWidth - 1 || GridPosition.y == 0 || GridPosition.y == associatedGrid.GridHeight - 1; } }
         public bool IsSpawnBlocked { get; private set; }
         public bool IsEnemySpawnable { get; private set; }
-        public bool IsOccupied { get { return Occupant != null; } }
-        public IOccupyGrid Occupant { get; private set; }
 
         private MyGrid associatedGrid;
 
@@ -24,16 +22,6 @@ namespace GridSystem
             GridPosition = gridPosition;
         }
 
-        public void SetOccupant(IOccupyGrid occupant)
-        {
-            Occupant = occupant;
-        }
-
-        public void ClearOccupant()
-        {
-            Occupant = null;
-        }
-
         public void UpdateIsWalkable()
         {
             IsWalkable = Physics.Raycast(CenterWorldPosition + Vector3.up * 100, Vector3.down, 110, LayerMask.GetMask("Walkable"));
@@ -41,7 +29,7 @@ namespace GridSystem
 
         public void UpdateIsEnemySpawnable()
         {
-            IsEnemySpawnable = (IsWalkable) ? Physics.Raycast(CenterWorldPosition + Vector3.up * 100, Vector3.down, 110, LayerMask.GetMask("EnemySpawn")) : false;
+            IsEnemySpawnable = Physics.Raycast(CenterWorldPosition + Vector3.up * 100, Vector3.down, 110, LayerMask.GetMask("EnemySpawn"));
         }
 
         public void UpdateWalkableEdge()
@@ -73,13 +61,12 @@ namespace GridSystem
                 }
             }
 
-            IsWalkableEdge = IsWalkable ? isEdge : false;
+            IsWalkableEdge = isEdge;
         }
 
         public void UpdateSpawnBlocked()
         {
-            bool spawnBlocked = Physics.Raycast(CenterWorldPosition + Vector3.up * 100, Vector3.down, out RaycastHit hit, 110, LayerMask.GetMask("SpawnBlocked"));
-            IsSpawnBlocked = (IsWalkableEdge) ? spawnBlocked : false;
+            IsSpawnBlocked = Physics.Raycast(CenterWorldPosition + Vector3.up * 100, Vector3.down, out RaycastHit hit, 110, LayerMask.GetMask("SpawnBlocked"));
         }
     }
 }

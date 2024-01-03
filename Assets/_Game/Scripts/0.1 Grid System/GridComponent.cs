@@ -1,5 +1,5 @@
 using UnityEngine;
-using GridSystem;
+using DrewDev.GridSystem;
 
 public class GridComponent : MonoBehaviour
 {
@@ -12,10 +12,18 @@ public class GridComponent : MonoBehaviour
             Destroy(gameObject);
     }
 
+    [Header("Grid")]
     [SerializeField] bool showGrid;
     [SerializeField] private Vector2 gridSize;
     [SerializeField] private Vector2 cellSize;
     [Range(0.1f, 1f)][SerializeField] float updateGridTime;
+
+    [Space(20)]
+    [Header("Gizmos")]
+    [SerializeField] private Color walkableColor = Color.white;
+    [SerializeField] private Color walkableEdgeOrEnemySpawnerColor = Color.red;
+    [SerializeField] private Color gridEdgeOrSpawnBlockedColor = Color.blue;
+    [SerializeField] private float gizmosAlpha = 0.5f;
 
     private float updateGridTimer;
     public MyGrid Grid => grid;
@@ -54,7 +62,8 @@ public class GridComponent : MonoBehaviour
                 cell = grid.Cells[x, y];
                 if (!cell.IsWalkable)
                     continue;
-                Gizmos.color = (cell.IsGridEdge || cell.IsSpawnBlocked) ? Color.blue : (cell.IsWalkableEdge || cell.IsEnemySpawnable) ? Color.red : Color.white;
+                Color alphaChange = new Color(1, 1, 1, gizmosAlpha);
+                Gizmos.color = ((cell.IsGridEdge || cell.IsSpawnBlocked) ? gridEdgeOrSpawnBlockedColor : (cell.IsWalkableEdge || cell.IsEnemySpawnable) ? walkableEdgeOrEnemySpawnerColor : walkableColor) * alphaChange;
                 Gizmos.DrawWireCube(cell.CenterWorldPosition, new Vector3(grid.CellWidth - 0.3f, 0, grid.CellHeight - 0.3f));
             }
         }

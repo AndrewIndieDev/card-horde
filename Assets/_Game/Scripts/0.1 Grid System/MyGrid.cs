@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GridSystem
+namespace DrewDev.GridSystem
 {
     public class MyGrid
     {
