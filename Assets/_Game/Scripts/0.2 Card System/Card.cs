@@ -1,7 +1,6 @@
-using DrewDev.GridSystem;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class Card : MonoBehaviour, IGridCellOccupier
 {
     public Vector2 GridPosition
     {

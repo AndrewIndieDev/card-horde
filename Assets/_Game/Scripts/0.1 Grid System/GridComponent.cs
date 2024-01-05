@@ -42,6 +42,17 @@ public class GridComponent : MonoBehaviour
             grid.UpdateCells();
             updateGridTimer = updateGridTime;
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            Time.timeScale = 1;
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            Time.timeScale = 3;
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            Time.timeScale = 6;
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            Time.timeScale = 10;
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+            Time.timeScale = 20;
     }
 
     public Vector2 GetGridCellSize()
@@ -63,7 +74,10 @@ public class GridComponent : MonoBehaviour
                 if (!cell.IsWalkable)
                     continue;
                 Color alphaChange = new Color(1, 1, 1, gizmosAlpha);
-                Gizmos.color = ((cell.IsGridEdge || cell.IsSpawnBlocked) ? gridEdgeOrSpawnBlockedColor : (cell.IsWalkableEdge || cell.IsEnemySpawnable) ? walkableEdgeOrEnemySpawnerColor : walkableColor) * alphaChange;
+                if (cell.IsOccupied)
+                    Gizmos.color = Color.yellow * alphaChange;
+                else
+                    Gizmos.color = ((cell.IsGridEdge || cell.IsSpawnBlocked) ? gridEdgeOrSpawnBlockedColor : (cell.IsWalkableEdge || cell.IsEnemySpawnable) ? walkableEdgeOrEnemySpawnerColor : walkableColor) * alphaChange;
                 Gizmos.DrawWireCube(cell.CenterWorldPosition, new Vector3(grid.CellWidth - 0.3f, 0, grid.CellHeight - 0.3f));
             }
         }

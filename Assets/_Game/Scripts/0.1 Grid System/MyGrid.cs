@@ -47,7 +47,9 @@ namespace DrewDev.GridSystem
 
         public GridCell GetCell(Vector2 gridPosition)
         {
-            return cells[(int)gridPosition.x, (int)gridPosition.y];
+            if (WithinGrid(gridPosition))
+                return cells[(int)gridPosition.x, (int)gridPosition.y];
+            return null;
         }
 
         public Vector2 WorldToGridPosition(Vector3 worldPosition)
@@ -74,6 +76,11 @@ namespace DrewDev.GridSystem
                 cell.UpdateSpawnBlocked();
                 cell.UpdateIsEnemySpawnable();
             }
+        }
+
+        public bool WithinGrid(Vector2 gridPosition)
+        {
+            return gridPosition.x >= 0 && gridPosition.x < GridWidth && gridPosition.y >= 0 && gridPosition.y < GridHeight;
         }
     }
 }

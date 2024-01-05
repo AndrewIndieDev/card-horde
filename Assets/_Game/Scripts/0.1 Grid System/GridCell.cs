@@ -13,6 +13,10 @@ namespace DrewDev.GridSystem
         public bool IsGridEdge { get { return GridPosition.x == 0 || GridPosition.x == associatedGrid.GridWidth - 1 || GridPosition.y == 0 || GridPosition.y == associatedGrid.GridHeight - 1; } }
         public bool IsSpawnBlocked { get; private set; }
         public bool IsEnemySpawnable { get; private set; }
+        public bool IsOccupied { get { return Occupier != null; } }
+
+        public IGridCellOccupier Occupier { get { return occupier; } set { occupier = value; } }
+        private IGridCellOccupier occupier;
 
         private MyGrid associatedGrid;
 
@@ -46,7 +50,7 @@ namespace DrewDev.GridSystem
                         continue;
 
                     Vector2 neighborGridPosition = GridPosition + new Vector2(x, y);
-                    if (neighborGridPosition.x < 0 || neighborGridPosition.x >= associatedGrid.GridWidth || neighborGridPosition.y < 0 || neighborGridPosition.y >= associatedGrid.GridHeight)
+                    if (!associatedGrid.WithinGrid(neighborGridPosition))
                     {
                         isEdge = true;
                         break;
@@ -67,6 +71,16 @@ namespace DrewDev.GridSystem
         public void UpdateSpawnBlocked()
         {
             IsSpawnBlocked = Physics.Raycast(CenterWorldPosition + Vector3.up * 100, Vector3.down, out RaycastHit hit, 110, LayerMask.GetMask("SpawnBlocked"));
+        }
+
+        public void SetOccupier(Card card)
+        {
+            Occupier = card;
+        }
+
+        public void ClearOccupier()
+        {
+            Occupier = null;
         }
     }
 }
