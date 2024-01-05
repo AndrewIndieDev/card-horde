@@ -43,6 +43,7 @@ public class GridComponent : MonoBehaviour
             updateGridTimer = updateGridTime;
         }
 
+        // DEBUG: For testing quickly
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1;
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -53,6 +54,7 @@ public class GridComponent : MonoBehaviour
             Time.timeScale = 10;
         if (Input.GetKeyDown(KeyCode.Alpha5))
             Time.timeScale = 20;
+        // DEBUG: For testing quickly
     }
 
     public Vector2 GetGridCellSize()

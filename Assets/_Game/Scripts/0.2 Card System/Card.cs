@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class Card : MonoBehaviour, IGridCellOccupier
@@ -11,6 +12,8 @@ public class Card : MonoBehaviour, IGridCellOccupier
     }
 
     private CardStateMachine stateMachine;
+
+    public MMF_Player moveFeedbacks;
 
     public void Start()
     {

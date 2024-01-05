@@ -35,6 +35,7 @@ public class IdleCardState : CardState
             {
                 currentCell.ClearOccupier();
                 moveTween = card.transform.DOMove(GridComponent.Instance.Grid.GridToWorldPosition(randomMove), 0.5f);
+                card.moveFeedbacks?.PlayFeedbacks();
                 moveToCell.SetOccupier(card);
             }
         }
