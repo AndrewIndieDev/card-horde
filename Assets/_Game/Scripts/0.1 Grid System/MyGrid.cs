@@ -37,6 +37,7 @@ namespace DrewDev.GridSystem
             }
 
             UpdateCells();
+            UpdateCells();
         }
 
         public GridCell GetCell(Vector3 worldPosition)

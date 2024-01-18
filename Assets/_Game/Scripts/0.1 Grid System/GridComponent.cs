@@ -39,7 +39,7 @@ public class GridComponent : MonoBehaviour
         updateGridTimer -= Time.deltaTime;
         if (updateGridTimer <= 0)
         {
-            grid.UpdateCells();
+            //grid.UpdateCells();
             updateGridTimer = updateGridTime;
         }
 

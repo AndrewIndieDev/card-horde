@@ -1,8 +1,11 @@
 public class AbilityMeleeState : CardState
 {
+    private float time;
+
     public override void OnEnter(CardStateMachine stateMachine, Card card)
     {
-        //card.enterFeedbacks.PlayFeedbacks();
+        time = (card.ability1Feedbacks != null) ? card.ability1Feedbacks.TotalDuration : 1f;
+        card.ability1Feedbacks?.PlayFeedbacks();
     }
 
     public override void OnExit(CardStateMachine stateMachine, Card card)
@@ -12,9 +15,10 @@ public class AbilityMeleeState : CardState
 
     public override void OnUpdate(CardStateMachine stateMachine, Card card, float deltaTime)
     {
-        //if (!card.enterFeedbacks.IsPlaying)
-        //{
-        //    stateMachine.ChangeState(new IdleCardState());
-        //}
+        time -= deltaTime;
+        if (time > 0)
+            return;
+
+        stateMachine.ChangeState(new IdleCardState());
     }
 }

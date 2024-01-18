@@ -28,15 +28,19 @@ public class IdleCardState : CardState
             Vector2 currentPosition = card.GridPosition;
             Vector2 randomMove = new Vector2(currentPosition.x + Random.Range(-5, 6), currentPosition.y + Random.Range(-5, 6));
             GridCell currentCell = Grid.GetCell(currentPosition);
-            GridCell moveToCell = Grid.GetCell(randomMove);
-            bool canMoveTo = moveToCell != null && moveToCell.IsWalkable && !moveToCell.IsOccupied;
+            GridCell targetCell = Grid.GetCell(randomMove);
+            bool acceptableMove = targetCell != null && targetCell.IsWalkable && !targetCell.IsOccupied;
 
-            if (canMoveTo)
+            if (acceptableMove)
             {
                 currentCell.ClearOccupier();
                 moveTween = card.transform.DOMove(GridComponent.Instance.Grid.GridToWorldPosition(randomMove), 0.5f);
                 card.moveFeedbacks?.PlayFeedbacks();
-                moveToCell.SetOccupier(card);
+                targetCell.SetOccupier(card);
+            }
+            else if (targetCell != null)
+            {
+                stateMachine.ChangeState(new AbilityMeleeState());
             }
         }
     }

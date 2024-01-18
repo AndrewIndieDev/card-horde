@@ -14,6 +14,7 @@ public class Card : MonoBehaviour, IGridCellOccupier
     private CardStateMachine stateMachine;
 
     public MMF_Player moveFeedbacks;
+    public MMF_Player ability1Feedbacks;
 
     public void Start()
     {
@@ -23,6 +24,6 @@ public class Card : MonoBehaviour, IGridCellOccupier
 
     public void Update()
     {
-        stateMachine.Update(Time.deltaTime);
+        stateMachine?.Update(Time.deltaTime);
     }
 }
