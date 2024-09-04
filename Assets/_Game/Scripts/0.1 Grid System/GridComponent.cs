@@ -16,6 +16,7 @@ public class GridComponent : MonoBehaviour
     [SerializeField] bool showGrid;
     [SerializeField] private Vector2 gridSize;
     [SerializeField] private Vector2 cellSize;
+    [SerializeField] private bool updateGrid;
     [Range(0.1f, 1f)][SerializeField] float updateGridTime;
 
     [Space(20)]
@@ -39,7 +40,8 @@ public class GridComponent : MonoBehaviour
         updateGridTimer -= Time.deltaTime;
         if (updateGridTimer <= 0)
         {
-            //grid.UpdateCells();
+            if (updateGrid)
+                grid.UpdateCells();
             updateGridTimer = updateGridTime;
         }
 

@@ -26,7 +26,13 @@ public class IdleCardState : CardState
         {
             timer = Random.Range(0.8f, 1.2f);
             Vector2 currentPosition = card.GridPosition;
-            Vector2 randomMove = new Vector2(currentPosition.x + Random.Range(-5, 6), currentPosition.y + Random.Range(-5, 6));
+            Vector2 randomMove = new Vector2(currentPosition.x + Random.Range(-1, 2), currentPosition.y + Random.Range(-1, 2));
+            int iterations = 10;
+            while (randomMove == Vector2.zero && iterations > 0)
+            {
+                randomMove = new Vector2(currentPosition.x + Random.Range(-1, 2), currentPosition.y + Random.Range(-1, 2));
+                iterations--;
+            }
             GridCell currentCell = Grid.GetCell(currentPosition);
             GridCell targetCell = Grid.GetCell(randomMove);
             bool acceptableMove = targetCell != null && targetCell.IsWalkable && !targetCell.IsOccupied;
