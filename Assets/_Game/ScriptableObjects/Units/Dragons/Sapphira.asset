@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d864439afd88754c93355f474728508, type: 3}
+  m_Name: Sapphira
+  m_EditorClassIdentifier: 
+  namedUnit: Sapphira
+  artwork: {fileID: 21300000, guid: e34d962a15bc4144b95165e8c9dab8a1, type: 3}
+  statSO: {fileID: 11400000, guid: bfa267090f8cc6b4ca3e49a92444b411, type: 2}
+  speciesSO: {fileID: 11400000, guid: f73040fe223481043a8c411b2341bf72, type: 2}
+  titleSO: {fileID: 11400000, guid: 6c9a797953963b0409f8f76651c075b9, type: 2}

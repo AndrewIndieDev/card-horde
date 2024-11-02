@@ -73,7 +73,7 @@ namespace DrewDev.GridSystem
             IsSpawnBlocked = Physics.Raycast(CenterWorldPosition + Vector3.up * 100, Vector3.down, out RaycastHit hit, 110, LayerMask.GetMask("SpawnBlocked"));
         }
 
-        public void SetOccupier(Card card)
+        public void SetOccupier(CardObject card)
         {
             Occupier = card;
         }

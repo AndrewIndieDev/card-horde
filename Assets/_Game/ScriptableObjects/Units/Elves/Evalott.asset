@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d864439afd88754c93355f474728508, type: 3}
+  m_Name: Evalott
+  m_EditorClassIdentifier: 
+  namedUnit: Evalott
+  artwork: {fileID: 21300000, guid: 5810712de288fe246b61c810e76733d2, type: 3}
+  statSO: {fileID: 11400000, guid: bfa267090f8cc6b4ca3e49a92444b411, type: 2}
+  speciesSO: {fileID: 11400000, guid: 09a76d78146b92a4ea3252de8b263498, type: 2}
+  titleSO: {fileID: 11400000, guid: ee9c4168fdd800042bdf60137f6094e3, type: 2}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fd068e24d660c489f4ce274da4c178, type: 3}
+  m_Name: Zombie
+  m_EditorClassIdentifier: 
+  _healthModifier: 100
+  _damageModifier: 100
+  _decisionSpeedModifier: 200
+  _moveSpeedModifier: 25
+  _name: Zombie
+  _description: A smlow moving creatuire, determined on eating the brains of it's
+    enemies.
+  _borderArtwork: {fileID: 21300000, guid: f79871f59980f174cb3f84440e1d5283, type: 3}
+  _actions: []

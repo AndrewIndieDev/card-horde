@@ -1,27 +1,28 @@
-using DG.Tweening;
-using DrewDev.GridSystem;
-using UnityEngine;
-
 public class IdleCardState : CardState
 {
-    private MyGrid Grid => GridComponent.Instance.Grid;
+    private float decisionTimer;
 
-    private float timer;
-    private Tween moveTween;
-
-    public override void OnEnter(CardStateMachine stateMachine, Card card)
+    public override void OnEnter(CardStateMachine stateMachine, CardObject card)
     {
-        timer = Random.Range(0f, 2f);
+        decisionTimer = card.unit.stats.ModifiedDecisionTime;
     }
 
-    public override void OnExit(CardStateMachine stateMachine, Card card)
+    public override void OnExit(CardStateMachine stateMachine, CardObject card)
     {
-        moveTween?.Complete();
+        
     }
 
-    public override void OnUpdate(CardStateMachine stateMachine, Card card, float deltaTime)
+    public override void OnUpdate(CardStateMachine stateMachine, CardObject card, float deltaTime)
     {
-        timer -= deltaTime;
+        decisionTimer -= deltaTime;
+        if (decisionTimer <= 0f)
+        {
+            stateMachine.ChangeState(new DecideBestActionState());
+        }
+    }
+}
+/* Maybe useful when I get to card movement
+timer -= deltaTime;
         if (timer <= 0f)
         {
             timer = Random.Range(0.8f, 1.2f);
@@ -41,13 +42,11 @@ public class IdleCardState : CardState
             {
                 currentCell.ClearOccupier();
                 moveTween = card.transform.DOMove(GridComponent.Instance.Grid.GridToWorldPosition(randomMove), 0.5f);
-                card.moveFeedbacks?.PlayFeedbacks();
                 targetCell.SetOccupier(card);
             }
             else if (targetCell != null)
             {
-                stateMachine.ChangeState(new AbilityMeleeState());
+                stateMachine.ChangeState(new ExecuteActionState());
             }
         }
-    }
-}
+*/

@@ -1,9 +1,9 @@
 public class CardStateMachine
 {
-    public Card Card { get; set; }
+    public CardObject Card { get; set; }
     public CardState CurrentState { get; set; }
 
-    public CardStateMachine(Card card)
+    public CardStateMachine(CardObject card)
     {
         Card = card;
     }
